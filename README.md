@@ -1,6 +1,16 @@
 # @kamataryo/cancelable-promise
 
+[![Build Status](https://travis-ci.org/kamataryo/cancelable-promise.svg?branch=master)](https://travis-ci.org/kamataryo/cancelable-promise)
+
 Cancelable Promise. Prevent memory leak when ComponentWillUnmount.
+
+## install
+
+```shell
+$ yarn add @kamataryo/cancelable-promise
+# or
+$ npm install @kamataryo/cancelable-promise
+```
 
 ## APIs
 
