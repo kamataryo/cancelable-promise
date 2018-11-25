@@ -2,7 +2,18 @@
   "name": "@kamataryo/cancelable-promise",
   "version": "0.0.3",
   "main": "dist/index.js",
+  "description": "cancelable promise decorator.",
+  "keywords": [
+    "promise",
+    "fetch",
+    "react",
+    "postprocess"
+  ],
+  "bugs": {
+    "url": "https://github.com/kamataryo/cancelable-promise/issues"
+  },
   "license": "MIT",
+  "author": "kamataryo <mugil.cephalus+github.com@gmail.com>",
   "private": false,
   "scripts": {
     "lint": "eslint .",
@@ -26,5 +37,10 @@
     "require": [
       "esm"
     ]
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kamataryo/cancelable-promise.git"
+  },
+  "homepage": "https://github.com/kamataryo/cancelable-promise#readme"
 }
