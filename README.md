@@ -102,7 +102,7 @@ cancel()
 
 ### cancel options
 
-`immediate:bool` option invokes reject immediately as `cancel` called.
+`immediate:bool` option invokes `reject` immediately as `cancel` called.
 
 ```javascript
 import { makeCancelable } from '@kamataryo/cancelable-promise'
