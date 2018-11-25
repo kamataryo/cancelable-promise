@@ -1,7 +1,6 @@
 language: node_js
 
 node_js:
-  - '8'
   - '10'
 
 cache:
@@ -17,13 +16,11 @@ script:
   - npm run build
 
 deploy:
-  provider: npm
-  email: kamataryo@users.noreply.github.com
+  provider: script
+  script: 'echo "//registry.npmjs.org/:_authToken=${API_TOKEN}" > $HOME/.npmrc && npm publish --access=public'
   on:
     tags: true
   skip_cleanup: true
-  api_key:
-    secure: NmPpPjmkWsQDondfkliw8kBdoMOof+fih7doJcWfd/tNV8imqS2Xw2kcSb+PZNWAXLBxAUcbX4HUHvFRSpsWjB1tbC6MrkOiB7QTxsgqMdjI1uzHPbhzgPf1B5XK8V3Jj3SVIx8FV1r9nGtSbWaqTxqSFc7TdSSCldMIDihpT9bAuDDMe1l9dtg6qLokSHPfc3pl5tzInRGI85Qme2VTQHIvvxtEme8v1lY7vZbQ2qnbs4Jk7b/Itaqf0zXM8scxLR0ubfkMapXrb9+etAIfCqUDhNJuww4ZEpSlH5c8YTYjIuSTywXPja0gC+lAnWilnRF0Pqy+zRxP4bAWSdHmQ/DiAHgH8ZuVUNJOhlTYsvFrfwwy14zblowNpTL8G5C/UGKgTgYSo5f9G9YtOQCMW4ujb4nZ61JiUsxIadM4VBFIsjYtzbY+nnOh0UGOQvU4TyDdRCw/gZ2TIZ99pUZIAbarkKY6S5eOZ7fUCAAwlFxOUZfqskQsbFVbD1LheS/xSmxytCQpT1wtBhz/URSykGxeuHz2gNNFDq5B8YwHJgvCgOnyo+ioJrIIdRbq7jmj70JLUbZnlGVbhrYsU30D/32tKPxuKzA9nXdYCA7rjBgfe9bZYuP+GOs2XEgeWeVFP/z9HeUA2b8d1GTF69q974ww6EWeAaR9rPQQgk1pbPM=
 
 notifications:
   email: false

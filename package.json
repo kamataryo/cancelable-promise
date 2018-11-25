@@ -9,8 +9,7 @@
     "test": "ava",
     "format": "prettier-eslint \"./src/**/*.js\" --write",
     "build": "babel ./src/index.js --source-maps true --out-dir ./dist",
-    "prepublish": "npm run build",
-    "encrypt_npm_accesstoken": "travis encrypt $([[ $(cat ~/.npmrc) =~ _authToken=(.*)$ ]] && echo ${BASH_REMATCH[1]}) --add deploy.api_key"
+    "prepublish": "npm run build"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.5",

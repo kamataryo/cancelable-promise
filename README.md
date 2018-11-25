@@ -40,3 +40,10 @@ promise()
   .catch(err => console.log(err.isCanceled ? 'canceled!' : 'unknown error'))
 cancel()
 ```
+
+## Deploy
+
+```shell
+$ npm version [patch/minor/major]
+$ git push origin [new tag name]
+```
