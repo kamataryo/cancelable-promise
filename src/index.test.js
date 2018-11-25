@@ -82,3 +82,29 @@ test('class', t => {
   cancel()
   return promise().catch(err => t.true(err.isCanceled))
 })
+
+test('cancel immediately', t => {
+  const { promise, cancel } = new CancelablePromise(resolve =>
+    setTimeout(resolve, 1000),
+  )
+
+  const started = Date.now()
+  setTimeout(() => cancel({ immediate: true }), 500)
+
+  return promise()
+    .catch(() => {})
+    .then(() => t.true(Date.now() - started < 1000))
+})
+
+test('cancel not immediately', t => {
+  const { promise, cancel } = new CancelablePromise(resolve =>
+    setTimeout(resolve, 1000),
+  )
+
+  const started = Date.now()
+  setTimeout(() => cancel({ immediate: false }), 500)
+
+  return promise()
+    .catch(() => {})
+    .then(() => t.true(Date.now() - started > 1000))
+})

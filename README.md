@@ -41,6 +41,19 @@ promise()
 cancel()
 ```
 
+### cancel options
+
+```javascript
+import { makeCancelable } from '@kamataryo/cancelable-promise'
+const timeout = new Promise(resolve => setTimeout(resolve, 10000))
+const { promise, cancel } = makeCancelable(timeout)
+
+promise()
+  .then(() => console.log('timeout!'))
+  .catch(err => console.log(err.isCanceled ? 'canceled!' : 'unknown error'))
+cancel({ immediate: true })
+```
+
 ## Deploy
 
 ```shell

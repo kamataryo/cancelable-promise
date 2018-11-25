@@ -1,4 +1,9 @@
 const hasCanceled = {}
+const rejector = {}
+
+const defaultCancelOptions = {
+  immediate: false,
+}
 
 export const makeCancelable = promise => {
   const id = Symbol('cancelable promise')
@@ -8,22 +13,29 @@ export const makeCancelable = promise => {
      * @return {Promise} return cancelable promise
      */
     promise: () =>
-      new Promise((resolve, reject) =>
-        promise.then(result => {
+      new Promise((resolve, reject) => {
+        rejector[id] = () => reject({ isCanceled: true })
+        return promise.then(result => {
           if (hasCanceled[id]) {
             delete hasCanceled[id]
             return reject({ isCanceled: true })
           } else {
             return resolve(result)
           }
-        }),
-      ),
+        })
+      }),
 
     /**
      * cancel promise
+     * @param  {object} arg options
      * @return {void}
      */
-    cancel: () => {
+    cancel: arg => {
+      const options = { ...defaultCancelOptions, ...arg }
+      const reject = rejector[id]
+      if (options.immediate && typeof reject === 'function') {
+        reject()
+      }
       hasCanceled[id] = true
     },
   }
