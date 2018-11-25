@@ -1,6 +1,6 @@
 {
   "name": "@kamataryo/cancelable-promise",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "main": "dist/index.js",
   "license": "MIT",
   "private": false,
@@ -9,7 +9,8 @@
     "test": "ava",
     "format": "prettier-eslint \"./src/**/*.js\" --write",
     "build": "babel ./src/index.js --source-maps true --out-dir ./dist",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "encrypt_npm_accesstoken": "travis encrypt $([[ $(cat ~/.npmrc) =~ _authToken=(.*)$ ]] && echo ${BASH_REMATCH[1]}) --add deploy.api_key"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.5",
@@ -18,11 +19,10 @@
     "ava": "^0.25.0",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.9.0",
+    "esm": "^3.0.84",
     "prettier-eslint-cli": "^4.7.1"
   },
-  "dependencies": {
-    "esm": "^3.0.84"
-  },
+  "dependencies": {},
   "ava": {
     "require": [
       "esm"
