@@ -11,6 +11,14 @@ $ yarn add @kamataryo/cancelable-promise
 # or $ npm install @kamataryo/cancelable-promise
 ```
 
+### Yarn alias
+
+[detail](https://yarnpkg.com/lang/en/docs/cli/add/#toc-yarn-add-alias)
+
+```shell
+$ yarn add cancelable-promise@npm:@kamataryo/cancelable-promise
+```
+
 ## Usage with React
 
 ```javascript
