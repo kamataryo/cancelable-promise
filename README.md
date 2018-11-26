@@ -39,21 +39,23 @@ class MyComponent extends React.Component {
 
   onClick = () => {
     const { promise, cancel } = makeCancelable(
-      fetch('https://example.com/data.json').then(res => {
-        if (res.ok) {
-          return res.json()
-        } else {
-          throw 'error'
-        }
-      }),
+      fetch('https://example.com/data.json')
+        .then(res => {
+          if (res.ok) {
+            return res.json()
+          } else {
+            throw 'error'
+          }
+        })
+        .catch(() => this.setState({ status: 'failure' })),
     )
     this.setState({ cancel, status: 'requesting' })
 
     promise()
+      // if `cancel` has been called this `then` callback will never called.
       .then(data => this.setState({ data, status: 'success' }))
-      .catch(
-        err => (err && err.isCanceled) || this.setState({ status: 'failure' }),
-      )
+      // and this `catch` callback is called.
+      .catch(({ isCanceled }) => console.log('canceled'))
   }
 
   /**

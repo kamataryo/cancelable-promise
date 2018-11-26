@@ -1,7 +1,7 @@
 import test from 'ava'
 import CancelablePromise, { makeCancelable } from './'
 
-test('not canceled', async t => {
+test('not canceled successfully', async t => {
   const myPromise = new Promise(resolve => setTimeout(resolve, 50))
   const { promise } = makeCancelable(myPromise)
 
@@ -12,6 +12,16 @@ test('not canceled', async t => {
     catched = true
   }
   t.false(catched)
+})
+
+test.only('not canceled with failure', t => {
+  const myPromise = new Promise((resolve, reject) =>
+    setTimeout(reject, 50),
+  ).catch(() => 'catched')
+
+  const { promise } = makeCancelable(myPromise)
+
+  return promise().then(result => t.true(result === 'catched'))
 })
 
 test('canceled', async t => {
