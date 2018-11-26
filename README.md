@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/kamataryo/cancelable-promise.svg?branch=master)](https://travis-ci.org/kamataryo/cancelable-promise)
 
-Cancelable Promise. For example, you can prevent memory leak when calling `setState` at `ComponentWillUnmount` (React).
+Cancelable Promise enables you to handle and prevent memory leak with remaining React `setState` after component unmounting.
 
 ## install
 
@@ -14,7 +14,7 @@ $ yarn add @kamataryo/cancelable-promise
 ## Usage with React
 
 ```javascript
-import { React } from 'react'
+import React from 'react'
 import { makeCancelable } from '@kamataryo/cancelable-promise'
 const noop = x => x
 
